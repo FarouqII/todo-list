@@ -1,0 +1,126 @@
+/*       Setup       */
+
+:root {
+    --bg-dark: oklch(0.1 0.025 264);
+    --bg: oklch(0.15 0.025 264);
+    --bg-light: oklch(0.2 0.025 264);
+    --bg-lightest: oklch(0.3 0.025 264);
+    --text: oklch(0.96 0.05 264);
+    --text-muted: oklch(0.76 0.05 264);
+    --highlight: oklch(0.5 0.05 264);
+    --border: 1px solid oklch(0.4 0.05 264);
+    --border-muted: oklch(0.3 0.05 264);
+    --primary: oklch(0.76 0.1 264);
+    --secondary: oklch(0.76 0.1 84);
+    --danger: oklch(0.7 0.05 30);
+    --warning: oklch(0.7 0.05 100);
+    --success: oklch(0.7 0.05 160);
+    --info: oklch(0.7 0.05 260);
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url('./assets/Inter.ttc');
+}
+
+/*       Styling       */
+
+body {
+    background-color: var(--bg-dark);
+    font-family: "Inter", sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    background: linear-gradient(to top, var(--bg-dark), var(--bg));
+    border: var(--border);
+    border-top: 2px solid var(--highlight);
+    border-radius: calc(25px + 2vw);
+
+    width: 65vw;
+    height: 75vh;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2vw;
+}
+
+nav {
+    width: 15%;
+    height: 100%;
+}
+
+ul {
+    color: var(--text-muted);
+    font-size: 1.5rem;
+    text-align: center;
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    gap: 2vw;
+}
+
+.nav-tile {
+    background-color: var(--bg-lightest);
+    border-radius: 12px;
+    
+    width: 7vw;
+    height: 12vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vw;
+}
+
+.selected {
+    background-color: oklch(0.35 0.025 264);
+    color: var(--text);
+}
+
+#display {
+    width: 80%;
+    height: 100%;
+}
+
+#new-project {
+    color: var(--text-muted);
+    background-color: var(--bg-lightest);
+    border-radius: 12px;
+    border: var(--border);
+    border-top: 2px solid var(--highlight);
+    font-size: 1.5rem;
+    font-family: "Inter", sans-serif;
+
+    padding: 5px;
+    width: 100%;
+}
+
+/*       Joint       */
+
+nav, #display {
+    background: linear-gradient(to top, var(--bg), var(--bg-light));
+    border: var(--border);
+    border-radius: 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+}
+
+.nav-tile, a, #new-project {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.nav-tile:hover, #new-project:hover {
+    background-color: var(--highlight);
+}
