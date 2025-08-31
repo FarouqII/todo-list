@@ -88,6 +88,8 @@ ul {
 #display {
     width: 80%;
     height: 100%;
+
+    gap: 25px;
 }
 
 #new-project {
@@ -103,9 +105,81 @@ ul {
     width: 100%;
 }
 
+.project-tile {
+    color: var(--text);
+
+    width: 100%;
+}
+
+.project-table {
+    font-size: 1.25rem;
+    width: 100%;
+}
+
+.priority, .date {
+    text-align: center;
+}
+
+#create-project {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(6, 11, 22, 0.75);
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 1;
+}
+
+#popup {
+    border: var(--border);
+    border-radius: 15px;
+    background-color: var(--bg-lightest);
+    color: var(--text);
+    font-family: inherit;
+
+    width: 30vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2vw;
+    gap: 10px;
+
+    z-index: 10;
+}
+
+input[type="text"] {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--text-muted);
+    color: var(--text);
+}
+
+#create-submit {
+    width: 50%;
+    background: var(--highlight);
+    border: none;
+    border-radius: 10px;
+    color: var(--text-muted);
+    font-weight: 700;
+    align-self: center;
+    margin-top: 10px;
+
+    transition: all 0.2s ease;
+}
+
+#create-submit:hover {
+    background-color: var(--text-muted);
+    color: var(--highlight);
+}
+
 /*       Joint       */
 
-nav, #display {
+nav, #display, .project-tile {
     background: linear-gradient(to top, var(--bg), var(--bg-light));
     border: var(--border);
     border-radius: 25px;
@@ -116,7 +190,7 @@ nav, #display {
     padding: 25px;
 }
 
-.nav-tile, a, #new-project {
+.nav-tile, a, #new-project, button {
     cursor: pointer;
     transition: all 0.2s ease;
 }
