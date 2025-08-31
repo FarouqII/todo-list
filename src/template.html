@@ -19,27 +19,18 @@
         <div id="display">
             <div class="project-tile">
                 <h1>Project Name</h1>
-                <table class="project-table">
+                <table id="project-table">
                     <tr>
                         <th>Task</th>
                         <th>Date</th>
                         <th>Priority</th>
                     </tr>
-                    <tr>
-                        <td><input type="checkbox" id="todo-checkbox"><label for="todo-checkbox"> Task 1</label></td>
-                        <td class="date">31/8/2025</td>
-                        <td class="priority">High</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" id="todo-checkbox"><label for="todo-checkbox"> Task 2</label></td>
-                        <td class="date">31/8/2025</td>
-                        <td class="priority">Medium</td>
-                    </tr>
                 </table>
+                <button class="new-button" id="new-note">New Note</button>
             </div>
-            <button id="new-project">New Project</button>
+            <button class="new-button" id="new-project">New Project</button>
         </div>
-        <div id="create-project">
+        <div id="create-note">
             <div id="popup">
                 <h2>Create Note</h2>
 
@@ -51,6 +42,13 @@
 
                 <label for="create-date">Due Date:</label>
                 <input type="date" id="create-date">
+
+                <label for ="create-priority">Set Priority:</label>
+                <select id="create-priority">
+                    <option value="Low" selected>Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
 
                 <button type="submit" id="create-submit">Submit</button>
             </div>
