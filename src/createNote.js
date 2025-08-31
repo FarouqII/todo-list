@@ -2,6 +2,8 @@ import { format } from 'date-fns';
 
 export function createNote() {
     const noteTable = document.getElementById('project-table');
+    const parentProject = noteTable.parentNode;
+    const parent = parentProject.id;
 
     const createTitle = document.getElementById('create-title');
     const createDate = document.getElementById('create-date');
@@ -19,7 +21,22 @@ export function createNote() {
             </tr>
         `;
     }
-    
+
+    const keys = Object.keys(localStorage);
+    for (const key of keys) {
+        const keyObj = localStorage.getItem(key);
+        if (keyObj.projectName == parent) {
+            const newProject = {
+                projectName : parent,
+                notes : {
+                    title : createTitle.value,
+                    date : createDate.value ? newDate : format(new Date(), "dd/MM/yyyy"),
+                    priority : createPriority.value,
+                }
+            }
+            localStorage.setItem(`${parent}`, JSON.stringify(newProject));
+        }
+    }
 
     function resetForm() {
         const createNote = document.getElementById('create-note');
