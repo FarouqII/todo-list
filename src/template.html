@@ -16,21 +16,8 @@
             </ul>
         </nav>
 
-        <div id="display">
-            <div class="project-tile">
-                <h1>Project Name</h1>
-                <table id="project-table">
-                    <tr>
-                        <th>Task</th>
-                        <th>Date</th>
-                        <th>Priority</th>
-                    </tr>
-                </table>
-                <button class="new-button" id="new-note">New Note</button>
-            </div>
-            <button class="new-button" id="new-project">New Project</button>
-        </div>
-        <div id="create-note">
+        
+        <div class="create-window" id="create-note">
             <div id="popup">
                 <h2>Create Note</h2>
 
@@ -50,7 +37,17 @@
                     <option value="High">High</option>
                 </select>
 
-                <button type="submit" id="create-submit">Submit</button>
+                <button type="submit" class="button" id="note-submit">Submit</button>
+            </div>
+        </div>
+        <div class="create-window" id="create-project">
+            <div id="popup">
+                <h2>Create Project</h2>
+
+                <label for="create-name">Project Name</label>
+                <input type="text" id="create-name">
+
+                <button type="submit" class="button" id="project-submit">Submit</button>
             </div>
         </div>
     </main>

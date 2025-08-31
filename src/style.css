@@ -90,6 +90,7 @@ ul {
     height: 100%;
 
     gap: 25px;
+    overflow-y: scroll;
 }
 
 .new-button {
@@ -112,6 +113,10 @@ ul {
     color: var(--bg-lightest);
 }
 
+#new-project {
+    order: 1;
+}
+
 .project-tile {
     color: var(--text);
 
@@ -123,11 +128,11 @@ ul {
     width: 100%;
 }
 
-.priority, .date {
+td {
     text-align: center;
 }
 
-#create-note {
+.create-window {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -150,7 +155,7 @@ ul {
     font-family: inherit;
 
     width: 30vw;
-    height: 50vh;
+    height: 52vh;
     display: flex;
     flex-direction: column;
     padding: 2vw;
@@ -166,7 +171,7 @@ input[type="text"] {
     color: var(--text);
 }
 
-#create-submit {
+.button {
     width: 50%;
     background: var(--highlight);
     border: none;
@@ -179,9 +184,13 @@ input[type="text"] {
     transition: all 0.2s ease;
 }
 
-#create-submit:hover {
+.button:hover {
     background-color: var(--text-muted);
     color: var(--highlight);
+}
+
+#create-project > #popup {
+    height: 30vh;
 }
 
 /*       Joint       */
