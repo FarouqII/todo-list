@@ -28,8 +28,14 @@ export function loadHome() {
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const name = keyObj.projectName;
+        const newName = name.split(' ').join('');
         if (!(projects.includes(name))) {
             displayProject(name);
+            const notesList = keyObj.notes;
+            const noteTable = document.getElementById(`${newName}-table`);
+            for (const note of notesList) {
+                displayNote(noteTable, note.title, note.date, note.priority);
+            }
             projects.push(name);
         }
     }
