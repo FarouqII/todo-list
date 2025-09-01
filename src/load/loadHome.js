@@ -1,8 +1,9 @@
-import { createNote, displayNote } from "./createNote";
-import { createProject, displayProject } from "./createProject";
+import { createNote, displayNote } from "../create/createNote";
+import { createProject, displayProject } from "../create/createProject";
 
 export function loadHome() {
-    const main = document.querySelector('display');
+    const display = document.getElementById('display');
+    display.innerHTML = '';
     display.innerHTML += `
      <button class="new-style" id="new-project">New Project</button>
     `;

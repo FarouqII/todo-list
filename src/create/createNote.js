@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
-import { resetForm } from './resetForm.js'
-import { storeNote } from './storageFunctions.js';
+import { resetForm } from '../resetForm.js'
+import { storeNote } from '../storageFunctions.js';
 
 export function createNote(oldParent) {
     const parent = oldParent.split(' ').join('');

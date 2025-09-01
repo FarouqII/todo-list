@@ -1,5 +1,5 @@
 import { createNote } from './createNote.js';
-import { storeProject } from './storageFunctions.js';
+import { storeProject } from '../storageFunctions.js';
 
 export function createProject(name) {
     if (name) {
@@ -39,19 +39,21 @@ export function displayProject(name) {
         `
 
         const newProject = document.getElementById('new-project');
-        newProject.addEventListener('click', e => {
-            e.preventDefault();
+        if (newProject) {
+            newProject.addEventListener('click', e => {
+                e.preventDefault();
 
-            const createProject = document.getElementById('create-project');
-            createProject.style.display = "flex";
-        });
+                const createProject = document.getElementById('create-project');
+                createProject.style.display = "flex";
+            });
 
-        const projectSubmit = document.getElementById('project-submit');
-        projectSubmit.addEventListener('click', e => {
-            e.preventDefault();
-            const createName = document.getElementById('create-name');
-            const name = createName.value;
+            const projectSubmit = document.getElementById('project-submit');
+            projectSubmit.addEventListener('click', e => {
+                e.preventDefault();
+                const createName = document.getElementById('create-name');
+                const name = createName.value;
 
-            createProject(name);
-        });
+                createProject(name);
+            });
+        }
 }
