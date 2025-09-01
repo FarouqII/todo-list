@@ -1,54 +1,35 @@
 import { format } from 'date-fns';
+import { resetForm } from './resetForm.js'
+import { storeNote } from './storageFunctions.js';
 
-export function createNote() {
-    const noteTable = document.getElementById('project-table');
-    const parentProject = noteTable.parentNode;
-    const parent = parentProject.id;
-
+export function createNote(oldParent) {
+    const parent = oldParent.split(' ').join('');
+    console.log(parent)
     const createTitle = document.getElementById('create-title');
+    const title = createTitle.value;
     const createDate = document.getElementById('create-date');
-    const newDate = createDate.value.split('-').reverse().join('/');
+    const unformatDate = createDate.value.split('-').reverse().join('/');
+    const formatDate = createDate.value ? unformatDate : format(new Date(), "dd/MM/yyyy");
     const createPriority = document.getElementById('create-priority');
+    const priority = createPriority.value
+    
     if (!(createTitle.value)) {
         resetForm();
         return;
     } else {
-        noteTable.innerHTML += `
-            <tr>
-                <td><input type="checkbox" id="todo-checkbox"><label for="todo-checkbox"> ${createTitle.value}</label></td>
-                <td>${createDate.value ? newDate : format(new Date(), "dd/MM/yyyy")}</td>
-                <td>${createPriority.value}</td>
-            </tr>
-        `;
+        const noteTable = document.getElementById(`${parent}-table`);
+        displayNote(noteTable, title, formatDate, priority);
+        storeNote(oldParent, title, formatDate, priority);
     }
-
-    const keys = Object.keys(localStorage);
-    for (const key of keys) {
-        const keyObj = localStorage.getItem(key);
-        if (keyObj.projectName == parent) {
-            const newProject = {
-                projectName : parent,
-                notes : {
-                    title : createTitle.value,
-                    date : createDate.value ? newDate : format(new Date(), "dd/MM/yyyy"),
-                    priority : createPriority.value,
-                }
-            }
-            localStorage.setItem(`${parent}`, JSON.stringify(newProject));
-        }
-    }
-
-    function resetForm() {
-        const createNote = document.getElementById('create-note');
-        createTitle.value = '';
-        createDate.value = '';
-        createPriority.innerHTML = `
-            <option value="Low" selected>Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-        `;
-        createNote.style.display = "none";
-    }
-
     resetForm();
+}
+
+export function displayNote(el, title, date, priority) {
+    el.innerHTML += `
+        <tr>
+            <td><input type="checkbox" id="todo-checkbox"><label for="todo-checkbox"> ${title}</label></td>
+            <td>${date}</td>
+            <td>${priority}</td>
+        </tr>
+    `;
 }

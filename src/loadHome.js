@@ -1,0 +1,36 @@
+import { createNote, displayNote } from "./createNote";
+import { createProject, displayProject } from "./createProject";
+
+export function loadHome() {
+    const main = document.querySelector('display');
+    display.innerHTML += `
+     <button class="new-button" id="new-project">New Project</button>
+    `;
+    const newProject = document.getElementById('new-project');
+    newProject.addEventListener('click', e => {
+        e.preventDefault();
+
+        const createProject = document.getElementById('create-project');
+        createProject.style.display = "flex";
+    });
+
+    const projectSubmit = document.getElementById('project-submit');
+    projectSubmit.addEventListener('click', e => {
+        e.preventDefault();
+        const createName = document.getElementById('create-name');
+        const name = createName.value;
+
+        createProject(name);
+    });
+
+    const projects = [];
+    const keys = Object.keys(localStorage);
+    for (const key of keys) {
+        const keyObj = JSON.parse(localStorage.getItem(key));
+        const name = keyObj.projectName;
+        if (!(projects.includes(name))) {
+            displayProject(name);
+            projects.push(name);
+        }
+    }
+}

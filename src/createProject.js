@@ -1,4 +1,5 @@
 import { createNote } from './createNote.js';
+import { storeProject } from './storageFunctions.js';
 
 export function createProject(name) {
     if (name) {
@@ -12,6 +13,7 @@ export function createProject(name) {
         }
         if (!(exists)) {
             displayProject(name);
+            storeProject(name);
         }
     }
 
@@ -20,39 +22,37 @@ export function createProject(name) {
 }
 
 export function displayProject(name) {
+    const nameArr = name.split(" ");
+    const newName = nameArr.join("");
     display.innerHTML += `
-        <div class="project-tile" id="${name}">
-            <h1>${name}</h1>
-            <table id="project-table">
+        <div class="project-tile" id="${newName}">
+            <h1 id="${newName}-h1">${name}</h1>
+            <table class="project-table" id="${newName}-table">
                 <tr>
                     <th>Task</th>
                     <th>Date</th>
                     <th>Priority</th>
                 </tr>
             </table>
-            <button class="new-button" id="new-note">New Note</button>
+            <button class="new-button" id="${newName}-new-note">New Note</button>
         </div>
         `
 
-        const newNote = document.getElementById('new-note');
+        const newNote = document.getElementById(`${newName}-new-note`);
         newNote.addEventListener('click', e => {
             e.preventDefault();
+            const parent = e.target.parentNode;
 
-            const createNote = document.getElementById('create-note');
-            createNote.style.display = "flex";
-        })
+            const createNoteWin = document.getElementById('create-note');
+            createNoteWin.style.display = "flex";
 
-        const noteSubmit = document.getElementById('note-submit');
-        noteSubmit.addEventListener('click', e => {
-            e.preventDefault();
-            createNote();
+            const noteSubmit = document.getElementById('note-submit');
+            noteSubmit.addEventListener('click', (e, parenst) => {
+                e.preventDefault();
+                const parentH1 = document.getElementById(`${newName}-h1`);
+                createNote(parentH1.textContent);
+            });
         });
-        
-        const newProjectObj = {
-            projectName : name,
-        }
-
-        localStorage.setItem(`${name}`, JSON.stringify(newProjectObj));
 
         const newProject = document.getElementById('new-project');
         newProject.addEventListener('click', e => {

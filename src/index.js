@@ -1,5 +1,5 @@
 import './reset.css';
 import './style.css';
-import { createDisplay } from './createDisplay.js';
+import { loadHome } from './loadHome.js';
 
-createDisplay();
+loadHome();
