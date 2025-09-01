@@ -25,6 +25,7 @@ export function createNote(oldParent) {
 }
 
 export function displayNote(el, title, date, priority) {
+    console.log(`element ${el}`);
     el.innerHTML += `
         <tr>
             <td><input type="checkbox" id="todo-checkbox"><label for="todo-checkbox"> ${title}</label></td>

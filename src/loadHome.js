@@ -4,7 +4,7 @@ import { createProject, displayProject } from "./createProject";
 export function loadHome() {
     const main = document.querySelector('display');
     display.innerHTML += `
-     <button class="new-button" id="new-project">New Project</button>
+     <button class="new-style" id="new-project">New Project</button>
     `;
     const newProject = document.getElementById('new-project');
     newProject.addEventListener('click', e => {
@@ -34,3 +34,30 @@ export function loadHome() {
         }
     }
 }
+
+let currentProjectID = null;
+
+document.addEventListener('click', e => {
+    if (e.target.classList.contains('new-button')) {
+        e.preventDefault();
+
+        const btnParent = e.target.parentNode;
+        currentProjectID = btnParent.id; // remember the project we’re adding to
+
+        const createNoteWin = document.getElementById('create-note');
+        createNoteWin.style.display = "flex";
+    }
+});
+
+const noteSubmit = document.getElementById('note-submit');
+noteSubmit.addEventListener('click', e => {
+    e.preventDefault();
+
+    if (!currentProjectID) return; // safety check
+
+    const parentH1 = document.getElementById(`${currentProjectID}-h1`);
+    createNote(parentH1.textContent);
+
+    // reset after submission
+    currentProjectID = null;
+});

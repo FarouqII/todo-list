@@ -34,25 +34,9 @@ export function displayProject(name) {
                     <th>Priority</th>
                 </tr>
             </table>
-            <button class="new-button" id="${newName}-new-note">New Note</button>
+            <button class="new-button new-style" id="${newName}-new-note">New Note</button>
         </div>
         `
-
-        const newNote = document.getElementById(`${newName}-new-note`);
-        newNote.addEventListener('click', e => {
-            e.preventDefault();
-            const parent = e.target.parentNode;
-
-            const createNoteWin = document.getElementById('create-note');
-            createNoteWin.style.display = "flex";
-
-            const noteSubmit = document.getElementById('note-submit');
-            noteSubmit.addEventListener('click', (e, parenst) => {
-                e.preventDefault();
-                const parentH1 = document.getElementById(`${newName}-h1`);
-                createNote(parentH1.textContent);
-            });
-        });
 
         const newProject = document.getElementById('new-project');
         newProject.addEventListener('click', e => {

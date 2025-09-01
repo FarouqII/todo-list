@@ -93,7 +93,7 @@ ul {
     overflow-y: scroll;
 }
 
-.new-button {
+.new-style {
     color: var(--text-muted);
     background-color: var(--bg-lightest);
     border-radius: 12px;
@@ -108,7 +108,7 @@ ul {
     transition: all 0.2s ease;
 }
 
-.new-button:hover {
+.new-style:hover {
     background-color: var(--text-muted);
     color: var(--bg-lightest);
 }
