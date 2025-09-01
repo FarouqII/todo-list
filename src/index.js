@@ -3,6 +3,7 @@ import './css/style.css';
 import { loadHome } from './load/loadHome.js';
 import { loadToday } from './load/loadToday.js';
 import { loadUpcoming } from './load/loadUpcoming.js';
+import { loadPast } from './load/loadPast.js';
 
 loadHome();
 
@@ -19,4 +20,9 @@ todayBtn.addEventListener('click', () => {
 const upcomingBtn = document.getElementById('upcoming');
 upcomingBtn.addEventListener('click', () => {
     loadUpcoming();
+});
+
+const pastBtn = document.getElementById('past');
+pastBtn.addEventListener('click', () => {
+    loadPast();
 });
