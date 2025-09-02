@@ -1,5 +1,6 @@
 import { createNote } from './createNote.js';
 import { storeProject } from '../storageFunctions.js';
+import { deleteProject } from '../delete/deleteProject.js';
 
 export function createProject(name) {
     if (name) {
@@ -35,6 +36,7 @@ export function displayProject(name) {
                 </tr>
             </table>
             <button class="new-button new-style" id="${newName}-new-note">New Note</button>
+            <button class="delete-button new-style" id="${newName}-delete">Delete Project</button>
         </div>
         `
 
@@ -52,8 +54,17 @@ export function displayProject(name) {
                 e.preventDefault();
                 const createName = document.getElementById('create-name');
                 const name = createName.value;
-
+ks
                 createProject(name);
             });
+        }
+
+        const delProject = document.getElementById(`${newName}-delete`);
+        if (delProject) {
+            delProject.addEventListener('click', e => {
+                e.preventDefault();
+
+                deleteProject(name);
+            })
         }
 }

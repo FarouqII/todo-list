@@ -114,9 +114,16 @@ ul {
     color: var(--bg-lightest);
 }
 
+.delete-button:hover {
+    background-color: var(--danger);
+}
+
 .project-tile {
     color: var(--text);
-
+    
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
     width: 100%;
 }
 
