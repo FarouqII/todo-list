@@ -20,8 +20,17 @@ export function createNote(oldParent) {
         return;
     } else {
         const noteTable = document.getElementById(`${parent}-table`);
-        displayNote(noteTable, title, formatDate, priority);
-        storeNote(oldParent, title, formatDate, description, priority);
+        const parentID = oldParent.split(' ').join('');
+        const parentName = document.getElementById(`${parentID}`);
+        const keys = Object.keys(localStorage);
+        for (const key of keys) {
+            const keyObj = JSON.parse(localStorage.getItem(key));
+            if (keyObj.projectName == oldParent) {
+                storeNote(oldParent, key, title, formatDate, description, priority);
+            };
+        }
+        
+    displayNote(noteTable, title, formatDate, priority);
     }
     resetForm();
 }
@@ -49,5 +58,13 @@ export function displayNote(el, title, date, priority) {
     thisTR.appendChild(titleTD);
     thisTR.appendChild(dateTD);
     thisTR.appendChild(priorityTD);
+    thisTR.addEventListener('click', e => {
+        e.preventDefault();
+
+        const showNoteWindow = document.getElementById('show-note');
+        showNoteWindow.style.display = "flex";
+
+        showNote(el, title);
+    })
     el.appendChild(thisTR);
 }

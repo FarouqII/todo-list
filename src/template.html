@@ -23,13 +23,13 @@
                 <h2>Create Note</h2>
 
                 <label for="create-title">Note Title:</label>
-                <input type="text" id="create-title">
+                <input type="text" id="create-title" autocomplete="off">
 
                 <label for="create-description">Note Description:</label>
-                <input type="text" id="create-description">
+                <input type="text" id="create-description" autocomplete="off">
 
                 <label for="create-date">Due Date:</label>
-                <input type="date" id="create-date">
+                <input type="date" id="create-date" autocomplete="off">
 
                 <label for ="create-priority">Set Priority:</label>
                 <select id="create-priority">
@@ -47,7 +47,7 @@
                 <h2>Create Project</h2>
 
                 <label for="create-name">Project Name</label>
-                <input type="text" id="create-name">
+                <input type="text" id="create-name" autocomplete="off">
 
                 <button type="submit" class="button" id="project-submit">Submit</button>
                 <button type="reset" class="button close" id="project-close">Close</button>
@@ -56,6 +56,10 @@
 
         <div class="create-window" id="show-note">
             <div class="popup">
+                <h1 id="display-h1"></h1>
+                <h3 id="display-h3"></h3>
+                <p id="display-p"></p>
+
                 <button type="reset" class="button close" id="project-close">Close</button>
             </div>
         </div>

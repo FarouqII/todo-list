@@ -6,6 +6,7 @@ export function resetForm() {
     const createDescription = document.getElementById('create-description');
     const createPriority = document.getElementById('create-priority');
     const createName = document.getElementById('create-name');
+    const showNoteWindow = document.getElementById('show-note');
 
     createTitle.value = '';
     createDate.value = '';
@@ -18,4 +19,5 @@ export function resetForm() {
     createName.value = '';
     createNote.style.display = "none";
     createProjectWindow.style.display = "none";
+    showNoteWindow.style.display = "none";
 }

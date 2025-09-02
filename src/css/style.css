@@ -132,8 +132,26 @@ ul {
     width: 100%;
 }
 
+.table-header {
+    cursor: default;
+}
+
+.table-header:hover {
+    background-color: inherit;
+}
+
 td {
     text-align: center;
+    border-radius: 5px;
+}
+
+tr {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+tr:hover {
+    background-color: var(--bg-lightest);
 }
 
 .create-window {

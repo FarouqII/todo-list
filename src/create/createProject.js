@@ -29,7 +29,7 @@ export function displayProject(name) {
         <div class="project-tile" id="${newName}">
             <h1 id="${newName}-h1">${name}</h1>
             <table class="project-table" id="${newName}-table">
-                <tr>
+                <tr class="table-header">
                     <th>Task</th>
                     <th>Date</th>
                     <th>Priority</th>
@@ -54,7 +54,7 @@ export function displayProject(name) {
                 e.preventDefault();
                 const createName = document.getElementById('create-name');
                 const name = createName.value;
-ks
+
                 createProject(name);
             });
         }
