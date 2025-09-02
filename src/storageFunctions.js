@@ -1,4 +1,4 @@
-export function storeNote(parent, newTitle, newDate, newPriority) {
+export function storeNote(parent, newTitle, newDate, newDescription, newPriority) {
     console.log(parent);
     const keys = Object.keys(localStorage);
     for (const key of keys) {
@@ -7,6 +7,7 @@ export function storeNote(parent, newTitle, newDate, newPriority) {
             const newNote = {
                     title : newTitle,
                     date : newDate,
+                    description: newDescription,
                     priority : newPriority,
                 }
             const notesArr = keyObj.notes;
@@ -26,5 +27,5 @@ export function storeProject(name) {
         notes : [],
     }
 
-    localStorage.setItem(`${name}`, JSON.stringify(newProjectObj));
+    localStorage.setItem(`${localStorage.length + 1}`, JSON.stringify(newProjectObj));
 }

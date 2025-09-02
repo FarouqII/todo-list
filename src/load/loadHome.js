@@ -25,7 +25,7 @@ export function loadHome() {
     });
 
     const projects = [];
-    const keys = Object.keys(localStorage);
+    const keys = Object.keys(localStorage).sort((a, b) => a - b);
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const name = keyObj.projectName;
@@ -40,6 +40,7 @@ export function loadHome() {
             projects.push(name);
         }
     }
+    console.log(keys);
 }
 
 let currentProjectID = null;

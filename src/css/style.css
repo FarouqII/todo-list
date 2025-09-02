@@ -90,7 +90,8 @@ ul {
     height: 100%;
 
     gap: 25px;
-    overflow-y: scroll;
+    overflow-y: auto;
+    scrollbar-color: var(--bg-lightest) transparent;
 }
 
 .new-style {
@@ -111,10 +112,6 @@ ul {
 .new-style:hover {
     background-color: var(--text-muted);
     color: var(--bg-lightest);
-}
-
-#new-project {
-    order: 1;
 }
 
 .project-tile {
@@ -147,7 +144,7 @@ td {
     z-index: 1;
 }
 
-#popup {
+.popup {
     border: var(--border);
     border-radius: 15px;
     background-color: var(--bg-lightest);
@@ -191,6 +188,10 @@ input[type="text"] {
 
 #create-project > #popup {
     height: 30vh;
+}
+
+.close {
+    order: 1;
 }
 
 /*       Joint       */

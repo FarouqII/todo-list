@@ -19,7 +19,7 @@
         <div id="display"></div>
         
         <div class="create-window" id="create-note">
-            <div id="popup">
+            <div class="popup">
                 <h2>Create Note</h2>
 
                 <label for="create-title">Note Title:</label>
@@ -39,16 +39,24 @@
                 </select>
 
                 <button type="submit" class="button" id="note-submit">Submit</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
             </div>
         </div>
         <div class="create-window" id="create-project">
-            <div id="popup">
+            <div class="popup">
                 <h2>Create Project</h2>
 
                 <label for="create-name">Project Name</label>
                 <input type="text" id="create-name">
 
                 <button type="submit" class="button" id="project-submit">Submit</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
+            </div>
+        </div>
+
+        <div class="create-window" id="show-note">
+            <div class="popup">
+                <button type="reset" class="button close" id="project-close">Close</button>
             </div>
         </div>
     </main>
