@@ -38,6 +38,7 @@ export function createNote(oldParent) {
 export function displayNote(el, title, date, priority) {
 
     const thisTR = document.createElement('tr');
+    thisTR.id = title.split(' ').join('');
 
     const titleTD = document.createElement('td');
     const titleCB = document.createElement('input');

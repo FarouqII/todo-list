@@ -1,3 +1,5 @@
+import { deleteNote } from "../delete/deleteNote";
+
 export function showNote(el, title) {
     const showNoteWindow = document.getElementById('show-note');;
     const keys = Object.keys(localStorage);
@@ -17,6 +19,13 @@ export function showNote(el, title) {
                     document.getElementById('display-h1').textContent = noteName;
                     document.getElementById('display-h3').textContent = noteDate;
                     document.getElementById('display-p').textContent = noteDescription;
+
+                    const noteDel = document.getElementById('note-delete');
+                    noteDel.addEventListener('click', e => {
+                        e.preventDefault();
+
+                        deleteNote(noteName);
+                    })
                 }
             }
         }

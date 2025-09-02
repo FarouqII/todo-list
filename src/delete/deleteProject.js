@@ -6,7 +6,6 @@ export function deleteProject(projectName) {
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         if (keyObj.projectName == projectName) {
-            console.log('found');
             localStorage.removeItem(key);
         };
     }
