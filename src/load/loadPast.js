@@ -19,14 +19,14 @@ export function loadPast() {
         if (!(projects.includes(name))) {
             displayProject(name);
             const notesList = keyObj.notes;
-            const noteTable = document.getElementById(`${newName}-table`);
+            const noteTbody = document.getElementById(`${newName}-tbody`);
             for (const note of notesList) {
                 const noteDateArr = note.date.split('/');
                 const noteDay = noteDateArr[0];
                 const noteMonth = noteDateArr[1];
                 const noteYear = noteDateArr[2];
                 if (noteYear < year || noteMonth < month || noteDay < day) {
-                    displayNote(noteTable, note.title, note.date, note.priority);
+                    displayNote(newName, noteTbody, note.title, note.date, note.priority);
                 }
             }
             projects.push(name);

@@ -1,15 +1,13 @@
 import { deleteNote } from "../delete/deleteNote";
 
-export function showNote(el, title) {
+export function showNote(parent, title) {
     const showNoteWindow = document.getElementById('show-note');;
     const keys = Object.keys(localStorage);
-    const noteParent = el.parentNode;
-    const parentID = noteParent.id;
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const keyPN = keyObj.projectName;
         const newPN = keyPN.split(' ').join('');
-        if (newPN == parentID) {
+        if (newPN == parent) {
             const keyNotes = keyObj.notes;
             for (const n of keyNotes) {
                 if (n.title == title) {

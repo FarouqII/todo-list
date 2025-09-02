@@ -29,11 +29,13 @@ export function displayProject(name) {
         <div class="project-tile" id="${newName}">
             <h1 id="${newName}-h1">${name}</h1>
             <table class="project-table" id="${newName}-table">
-                <tr class="table-header">
-                    <th>Task</th>
-                    <th>Date</th>
-                    <th>Priority</th>
-                </tr>
+                <tbody id="${newName}-tbody">
+                    <tr class="table-header">
+                        <th>Task</th>
+                        <th>Date</th>
+                        <th>Priority</th>
+                    </tr>
+                </tbody>
             </table>
             <button class="new-button new-style" id="${newName}-new-note">New Note</button>
             <button class="delete-button new-style" id="${newName}-delete">Delete Project</button>

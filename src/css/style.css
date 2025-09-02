@@ -154,6 +154,22 @@ tr:hover {
     background-color: var(--bg-lightest);
 }
 
+td[class="Low"] {
+    order: 1;
+}
+
+.Low {
+    color: var(--success);
+}
+
+.Medium {
+    color: var(--warning);
+}
+
+.High {
+    color: var(--danger);
+}
+
 .create-window {
     position: absolute;
     width: 100%;
@@ -184,6 +200,16 @@ tr:hover {
     gap: 10px;
 
     z-index: 10;
+}
+
+#show-note > .popup {
+    height: 40vh;
+    justify-content: space-between;
+}
+
+#show-note > .popup > #note-delete {
+    margin-top: 10px;
+    margin-bottom: -15px;
 }
 
 input[type="text"] {

@@ -16,10 +16,10 @@ export function loadToday() {
         if (!(projects.includes(name))) {
             displayProject(name);
             const notesList = keyObj.notes;
-            const noteTable = document.getElementById(`${newName}-table`);
+            const noteTbody = document.getElementById(`${newName}-tbody`);
             for (const note of notesList) {
                 if (note.date == currentDate) {
-                    displayNote(noteTable, note.title, note.date, note.priority);
+                    displayNote(noteTbody, note.title, note.date, note.priority);
                 }
             }
             projects.push(name);

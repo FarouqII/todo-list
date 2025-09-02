@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import { resetForm } from '../resetForm.js'
 import { storeNote } from '../storageFunctions.js';
 import { showNote } from '../display/showNote.js';
+import { sortTableByPriority } from '../sortTable.js';
 
 export function createNote(oldParent) {
     const parent = oldParent.split(' ').join('');
@@ -21,7 +22,6 @@ export function createNote(oldParent) {
     } else {
         const noteTable = document.getElementById(`${parent}-table`);
         const parentID = oldParent.split(' ').join('');
-        const parentName = document.getElementById(`${parentID}`);
         const keys = Object.keys(localStorage);
         for (const key of keys) {
             const keyObj = JSON.parse(localStorage.getItem(key));
@@ -30,13 +30,13 @@ export function createNote(oldParent) {
             };
         }
         
-    displayNote(noteTable, title, formatDate, priority);
+        const noteTbody = document.getElementById(`${parent}-tbody`);
+        displayNote(parent, noteTbody, title, formatDate, priority);
     }
     resetForm();
 }
 
-export function displayNote(el, title, date, priority) {
-
+export function displayNote(parent, el, title, date, priority) {
     const thisTR = document.createElement('tr');
     thisTR.id = title.split(' ').join('');
 
@@ -55,6 +55,7 @@ export function displayNote(el, title, date, priority) {
 
     const priorityTD = document.createElement('td');
     priorityTD.innerText = priority;
+    priorityTD.classList = priority;
 
     thisTR.appendChild(titleTD);
     thisTR.appendChild(dateTD);
@@ -65,7 +66,8 @@ export function displayNote(el, title, date, priority) {
         const showNoteWindow = document.getElementById('show-note');
         showNoteWindow.style.display = "flex";
 
-        showNote(el, title);
+        showNote(parent, title);
     })
     el.appendChild(thisTR);
+    sortTableByPriority(parent);
 }
