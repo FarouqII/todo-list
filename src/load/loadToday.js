@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { parse, isEqual, startOfDay } from 'date-fns';
 import { displayNote } from "../create/createNote";
 import { displayProject } from "../create/createProject";
 
@@ -6,28 +6,30 @@ export function loadToday() {
     const display = document.getElementById('display');
     display.innerHTML = '';
 
-    const projects = [];
+    const projectsDisplayed = new Set();
     const keys = Object.keys(localStorage);
+    const today = startOfDay(new Date());
+
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const name = keyObj.projectName;
-        const newName = name.split(' ').join('');
-        const currentDate = format(new Date(), "dd/MM/yyyy");
-        if (!(projects.includes(name))) {
-            displayProject(name);
-            const notesList = keyObj.notes;
-            const noteTbody = document.getElementById(`${newName}-tbody`);
-            for (const note of notesList) {
-                if (note.date == currentDate) {
-                    displayNote(noteTbody, note.title, note.date, note.priority);
-                }
+
+        if (projectsDisplayed.has(name)) continue;
+
+        displayProject(name);
+        const newName = name.replace(/\s+/g, '');
+        const noteTbody = document.getElementById(`${newName}-tbody`);
+
+        for (const note of keyObj.notes) {
+            const noteDate = startOfDay(parse(note.date, 'dd/MM/yyyy', new Date()));
+
+            if ((isEqual(noteDate, today))) {
+                displayNote(newName, noteTbody, note.title, note.date, note.priority);
             }
-            projects.push(name);
         }
+
+        projectsDisplayed.add(name);
     }
 
-    const newBtnList = document.querySelectorAll('.new-button');
-    for (const button of newBtnList) {
-        button.remove();
-    }
+    document.querySelectorAll('.new-button').forEach(btn => btn.remove());
 }

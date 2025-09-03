@@ -1,4 +1,4 @@
-import { format } from 'date-fns';
+import { parse, isBefore, startOfDay } from 'date-fns';
 import { displayNote } from "../create/createNote";
 import { displayProject } from "../create/createProject";
 
@@ -6,35 +6,30 @@ export function loadPast() {
     const display = document.getElementById('display');
     display.innerHTML = '';
 
-    const projects = [];
+    const projectsDisplayed = new Set();
     const keys = Object.keys(localStorage);
+    const today = startOfDay(new Date());
+
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const name = keyObj.projectName;
-        const newName = name.split(' ').join('');
-        const currentDate = format(new Date(), "dd/MM/yyyy");
-        const day = currentDate.split('/')[0];
-        const month = currentDate.split('/')[1];
-        const year = currentDate.split('/')[2];
-        if (!(projects.includes(name))) {
-            displayProject(name);
-            const notesList = keyObj.notes;
-            const noteTbody = document.getElementById(`${newName}-tbody`);
-            for (const note of notesList) {
-                const noteDateArr = note.date.split('/');
-                const noteDay = noteDateArr[0];
-                const noteMonth = noteDateArr[1];
-                const noteYear = noteDateArr[2];
-                if (noteYear < year || noteMonth < month || noteDay < day) {
-                    displayNote(newName, noteTbody, note.title, note.date, note.priority);
-                }
+
+        if (projectsDisplayed.has(name)) continue;
+
+        displayProject(name);
+        const newName = name.replace(/\s+/g, '');
+        const noteTbody = document.getElementById(`${newName}-tbody`);
+
+        for (const note of keyObj.notes) {
+            const noteDate = startOfDay(parse(note.date, 'dd/MM/yyyy', new Date()));
+
+            if (isBefore(noteDate, today)) {
+                displayNote(newName, noteTbody, note.title, note.date, note.priority);
             }
-            projects.push(name);
         }
+
+        projectsDisplayed.add(name);
     }
 
-    const newBtnList = document.querySelectorAll('.new-button');
-    for (const button of newBtnList) {
-        button.remove();
-    }
+    document.querySelectorAll('.new-button').forEach(btn => btn.remove());
 }

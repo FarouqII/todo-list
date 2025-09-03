@@ -143,6 +143,19 @@ ul {
 td {
     text-align: center;
     border-radius: 5px;
+    padding: 0 25px;
+}
+
+td label {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30%;
+}
+
+td input {
+    margin-right: auto;
 }
 
 tr {

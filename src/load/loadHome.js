@@ -24,23 +24,27 @@ export function loadHome() {
         createProject(name);
     });
 
-    const projects = [];
+    const projectsDisplayed = new Set();
     const keys = Object.keys(localStorage).sort((a, b) => a - b);
+
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const name = keyObj.projectName;
-        const newName = name.split(' ').join('');
-        if (!(projects.includes(name))) {
+        const newName = name.replace(/\s+/g, '');
+
+        if (!projectsDisplayed.has(name)) {
             displayProject(name);
             const notesList = keyObj.notes;
             const noteTbody = document.getElementById(`${newName}-tbody`);
+
             for (const note of notesList) {
                 displayNote(newName, noteTbody, note.title, note.date, note.priority);
             }
-            projects.push(name);
+
+            projectsDisplayed.add(name);
         }
     }
-    console.log(keys);
+
 }
 
 let currentProjectID = null;

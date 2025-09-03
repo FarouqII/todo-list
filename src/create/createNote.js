@@ -5,6 +5,8 @@ import { showNote } from '../display/showNote.js';
 import { sortTableByPriority } from '../sortTable.js';
 
 export function createNote(oldParent) {
+    const keys = Object.keys(localStorage);
+
     const parent = oldParent.split(' ').join('');
     const createTitle = document.getElementById('create-title');
     const title = createTitle.value;
@@ -20,13 +22,10 @@ export function createNote(oldParent) {
         resetForm();
         return;
     } else {
-        const noteTable = document.getElementById(`${parent}-table`);
-        const parentID = oldParent.split(' ').join('');
-        const keys = Object.keys(localStorage);
         for (const key of keys) {
             const keyObj = JSON.parse(localStorage.getItem(key));
             if (keyObj.projectName == oldParent) {
-                storeNote(oldParent, key, title, formatDate, description, priority);
+                storeNote(oldParent, key, title, formatDate, description, priority, false);
             };
         }
         
@@ -43,11 +42,32 @@ export function displayNote(parent, el, title, date, priority) {
     const titleTD = document.createElement('td');
     const titleCB = document.createElement('input');
     titleCB.type = "checkbox";
-    titleCB.id = "todo-checkbox";
+    titleCB.id = title.split(' ').join('') + "-checkbox";
+    titleCB.addEventListener('click', e => {
+        e.stopPropagation();
+    });
+    titleCB.addEventListener('change', e => {
+        toggleNoteCheck(parent, title, e.target.checked);
+    })
+    const keys = Object.keys(localStorage);
+    for (const key of keys) {
+        const project = JSON.parse(localStorage.getItem(key));
+        const newName = project.projectName.split(' ').join('');
+        
+        if (newName === parent) {
+            const note = project.notes.find(n => n.title === title);
+            if (note) {
+                titleCB.checked = note.selected;
+            }
+            break;
+        }
+    }
+
+
     const titleLabel = document.createElement('label');
-    titleLabel.for = "todo-checkbox";
+    titleLabel.htmlFor = titleCB.id;
     titleLabel.innerText = title;
-    titleTD.appendChild(titleCB);
+    titleLabel.appendChild(titleCB);
     titleTD.appendChild(titleLabel);
 
     const dateTD = document.createElement('td');
@@ -70,4 +90,21 @@ export function displayNote(parent, el, title, date, priority) {
     })
     el.appendChild(thisTR);
     sortTableByPriority(parent);
+}
+
+function toggleNoteCheck(projectName, noteTitle, checked) {
+    const keys = Object.keys(localStorage);
+    for (const key of keys) {
+        const project = JSON.parse(localStorage.getItem(key));
+        const newName = project.projectName;
+        if (newName.split(' ').join('') === projectName) {
+            const note = project.notes.find(n => n.title === noteTitle);
+            console.log(note);
+            if (note) {
+                note.selected = checked;
+                localStorage.setItem(key, JSON.stringify(project));
+            }
+            break;
+        }
+    }
 }

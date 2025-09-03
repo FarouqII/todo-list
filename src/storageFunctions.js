@@ -1,13 +1,13 @@
-export function storeNote(parent, key, newTitle, newDate, newDescription, newPriority) {
+export function storeNote(parent, key, newTitle, newDate, newDescription, newPriority, newSelected) {
     const keys = Object.keys(localStorage);
-    for (const key of keys) {
-        const keyObj = JSON.parse(localStorage.getItem(key));
+    const keyObj = JSON.parse(localStorage.getItem(key));
         if (keyObj.projectName == parent) {
             const newNote = {
                     title : newTitle,
                     date : newDate,
                     description: newDescription,
                     priority : newPriority,
+                    selected: newSelected,
                 }
             const notesArr = keyObj.notes;
             notesArr.push(newNote);
@@ -17,7 +17,6 @@ export function storeNote(parent, key, newTitle, newDate, newDescription, newPri
             }
             localStorage.setItem(key, JSON.stringify(newProject));
         }
-    }
 }
 
 export function storeProject(name) {
