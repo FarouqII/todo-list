@@ -1,7 +1,7 @@
 import { deleteNote } from "../delete/deleteNote";
+import { editNote } from "../editNote";
 
 export function showNote(parent, title) {
-    const showNoteWindow = document.getElementById('show-note');;
     const keys = Object.keys(localStorage);
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
@@ -23,6 +23,13 @@ export function showNote(parent, title) {
                         e.preventDefault();
 
                         deleteNote(noteName);
+                    })
+
+                    const noteEdit = document.getElementById('note-edit');
+                    noteEdit.addEventListener('click', e => {
+                        e.preventDefault();
+
+                        editNote(parent, noteName, noteDate, noteDescription, n.priority);
                     })
                 }
             }

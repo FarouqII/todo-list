@@ -23,10 +23,10 @@
                 <h2>Create Note</h2>
 
                 <label for="create-title">Note Title:</label>
-                <input type="text" id="create-title" autocomplete="off">
+                <input type="text" id="create-title" maxlength="20" autocomplete="off">
 
                 <label for="create-description">Note Description:</label>
-                <input type="text" id="create-description" autocomplete="off">
+                <input type="text" id="create-description" maxlength="60" autocomplete="off">
 
                 <label for="create-date">Due Date:</label>
                 <input type="date" id="create-date" autocomplete="off">
@@ -42,12 +42,13 @@
                 <button type="reset" class="button close" id="project-close">Close</button>
             </div>
         </div>
+
         <div class="create-window" id="create-project">
             <div class="popup">
                 <h2>Create Project</h2>
 
                 <label for="create-name">Project Name</label>
-                <input type="text" id="create-name" autocomplete="off">
+                <input type="text" id="create-name" maxlength="15" autocomplete="off">
 
                 <button type="submit" class="button" id="project-submit">Submit</button>
                 <button type="reset" class="button close" id="project-close">Close</button>
@@ -60,7 +61,33 @@
                 <h3 id="display-h3"></h3>
                 <p id="display-p"></p>
 
+                <button class="edit-button new-style" id="note-edit">Edit Note</button>
                 <button class="delete-button new-style" id="note-delete">Delete Note</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
+            </div>
+        </div>
+
+        <div class="create-window" id="edit-note">
+            <div class="popup">
+                <h2>Edit Note</h2>
+
+                <label for="edit-title">Note Title:</label>
+                <input type="text" id="edit-title" maxlength="20" autocomplete="off">
+
+                <label for="edit-description">Note Description:</label>
+                <input type="text" id="edit-description" maxlength="60" autocomplete="off">
+
+                <label for="edit-date">Due Date:</label>
+                <input type="date" id="edit-date" autocomplete="off">
+
+                <label for ="edit-priority">Set Priority:</label>
+                <select id="edit-priority">
+                    <option value="Low" selected>Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+                <button type="submit" class="button" id="edit-submit">Submit</button>
                 <button type="reset" class="button close" id="project-close">Close</button>
             </div>
         </div>

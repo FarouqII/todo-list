@@ -118,6 +118,10 @@ ul {
     background-color: var(--danger);
 }
 
+.edit-button:hover {
+    background-color: var(--warning);
+}
+
 .project-tile {
     color: var(--text);
     
@@ -216,7 +220,7 @@ td[class="Low"] {
 }
 
 #show-note > .popup {
-    height: 40vh;
+    height: 50vh;
     justify-content: space-between;
 }
 
@@ -230,6 +234,35 @@ input[type="text"] {
     border: none;
     border-bottom: 1px solid var(--text-muted);
     color: var(--text);
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none; 
+  
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+
+  transition: all 0.15s ease;
+}
+
+input[type="checkbox"]:checked {
+  background-color: var(--info);
+  border-color: var(--info);
+}
+
+input[type="checkbox"]:checked::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 14px;
 }
 
 .button {
@@ -252,6 +285,22 @@ input[type="text"] {
 
 #create-project > #popup {
     height: 30vh;
+}
+
+#create-priority, #create-date {
+    background-color: var(--bg-lightest);
+    color: var(--text);
+    border: 1px solid var(--highlight);
+    border-radius: 5px;
+
+    transition: all 0.2s ease;
+}
+
+#create-priority:hover, #create-date:hover {
+    background-color: var(--text-muted);
+    color: var(--bg-lightest);
+
+    cursor: pointer;
 }
 
 .close {
