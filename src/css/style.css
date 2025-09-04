@@ -229,6 +229,11 @@ td[class="Low"] {
     margin-bottom: -15px;
 }
 
+#note-id {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
 input[type="text"] {
     background: none;
     border: none;

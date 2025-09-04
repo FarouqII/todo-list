@@ -38,7 +38,7 @@ export function loadHome() {
             const noteTbody = document.getElementById(`${newName}-tbody`);
 
             for (const note of notesList) {
-                displayNote(newName, noteTbody, note.title, note.date, note.priority);
+                displayNote(newName, noteTbody, note.title, note.date, note.priority, note.id);
             }
 
             projectsDisplayed.add(name);

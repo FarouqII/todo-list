@@ -1,7 +1,7 @@
 import { deleteNote } from "../delete/deleteNote";
 import { editNote } from "../editNote";
 
-export function showNote(parent, title) {
+export function showNote(parent, id) {
     const keys = Object.keys(localStorage);
     for (const key of keys) {
         const keyObj = JSON.parse(localStorage.getItem(key));
@@ -10,19 +10,21 @@ export function showNote(parent, title) {
         if (newPN == parent) {
             const keyNotes = keyObj.notes;
             for (const n of keyNotes) {
-                if (n.title == title) {
+                if (n.id == id) {
                     const noteName = n.title;
                     const noteDate = n.date;
                     const noteDescription = n.description;
+                    const noteID = n.id;
                     document.getElementById('display-h1').textContent = noteName;
                     document.getElementById('display-h3').textContent = noteDate;
                     document.getElementById('display-p').textContent = noteDescription;
+                    document.getElementById('note-id').textContent = "ID: " + noteID;
 
                     const noteDel = document.getElementById('note-delete');
                     noteDel.addEventListener('click', e => {
                         e.preventDefault();
 
-                        deleteNote(noteName);
+                        deleteNote(noteID);
                     })
 
                     const noteEdit = document.getElementById('note-edit');

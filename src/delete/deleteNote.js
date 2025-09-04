@@ -1,8 +1,8 @@
 import { resetForm } from "../resetForm";
 
-export function deleteNote(title) {
+export function deleteNote(noteID) {
     resetForm();
-    const noteID = title.split(' ').join('');
+    
     const note = document.getElementById(noteID);
     if (note) note.remove();
 
@@ -11,7 +11,7 @@ export function deleteNote(title) {
         const keyObj = JSON.parse(localStorage.getItem(key));
         const notesList = keyObj.notes;
 
-        const index = notesList.findIndex(n => n.title === title);
+        const index = notesList.findIndex(n => n.id === noteID);
 
         if (index !== -1) {
             notesList.splice(index, 1);

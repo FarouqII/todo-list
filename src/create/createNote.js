@@ -25,37 +25,39 @@ export function createNote(oldParent) {
         for (const key of keys) {
             const keyObj = JSON.parse(localStorage.getItem(key));
             if (keyObj.projectName == oldParent) {
-                storeNote(oldParent, key, title, formatDate, description, priority, false);
+                storeNote(oldParent, key, title, formatDate, description, priority);
             };
         }
         
         const noteTbody = document.getElementById(`${parent}-tbody`);
-        displayNote(parent, noteTbody, title, formatDate, priority);
+        const newID = Date.now();
+        displayNote(parent, noteTbody, title, formatDate, priority, newID);
     }
     resetForm();
 }
 
-export function displayNote(parent, el, title, date, priority) {
+export function displayNote(parent, el, title, date, priority, newID) {
+    const keys = Object.keys(localStorage);
+
     const thisTR = document.createElement('tr');
-    thisTR.id = title.split(' ').join('');
+    thisTR.id = newID;
 
     const titleTD = document.createElement('td');
     const titleCB = document.createElement('input');
     titleCB.type = "checkbox";
-    titleCB.id = title.split(' ').join('') + "-checkbox";
+    titleCB.id = newID + "-checkbox";
     titleCB.addEventListener('click', e => {
         e.stopPropagation();
     });
     titleCB.addEventListener('change', e => {
-        toggleNoteCheck(parent, title, e.target.checked);
+        toggleNoteCheck(parent, newID, e.target.checked);
     })
-    const keys = Object.keys(localStorage);
     for (const key of keys) {
         const project = JSON.parse(localStorage.getItem(key));
         const newName = project.projectName.split(' ').join('');
         
         if (newName === parent) {
-            const note = project.notes.find(n => n.title === title);
+            const note = project.notes.find(n => n.id === newID);
             if (note) {
                 titleCB.checked = note.selected;
             }
@@ -86,20 +88,19 @@ export function displayNote(parent, el, title, date, priority) {
         const showNoteWindow = document.getElementById('show-note');
         showNoteWindow.style.display = "flex";
 
-        showNote(parent, title);
+        showNote(parent, newID);
     })
     el.appendChild(thisTR);
     sortTableByPriority(parent);
 }
 
-function toggleNoteCheck(projectName, noteTitle, checked) {
+function toggleNoteCheck(projectName, noteID, checked) {
     const keys = Object.keys(localStorage);
     for (const key of keys) {
         const project = JSON.parse(localStorage.getItem(key));
         const newName = project.projectName;
         if (newName.split(' ').join('') === projectName) {
-            const note = project.notes.find(n => n.title === noteTitle);
-            console.log(note);
+            const note = project.notes.find(n => n.id === noteID);
             if (note) {
                 note.selected = checked;
                 localStorage.setItem(key, JSON.stringify(project));
