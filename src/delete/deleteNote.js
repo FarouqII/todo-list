@@ -1,6 +1,7 @@
 import { resetForm } from "../resetForm";
 
 export function deleteNote(noteID) {
+    console.log(noteID);
     resetForm();
     
     const note = document.getElementById(noteID);

@@ -31,7 +31,7 @@ export function showNote(parent, id) {
                     noteEdit.addEventListener('click', e => {
                         e.preventDefault();
 
-                        editNote(parent, noteName, noteDate, noteDescription, n.priority);
+                        editNote(parent, noteName, noteDate, noteDescription, n.priority, noteID);
                     })
                 }
             }

@@ -1,9 +1,7 @@
-import { displayNote } from "./create/createNote";
 import { loadHome } from "./load/loadHome";
 import { resetForm } from "./resetForm";
-import { format } from 'date-fns';
 
-export function editNote(projectName, title, date, description, priority) {
+export function editNote(projectName, title, date, description, priority, newID) {
     resetForm();
     const editNoteWindow = document.getElementById('edit-note');
     editNoteWindow.style.display = "flex";
@@ -26,11 +24,12 @@ export function editNote(projectName, title, date, description, priority) {
             const project = JSON.parse(localStorage.getItem(key));
             const newName = project.projectName;
             if (newName.split(' ').join('') === projectName) {
-                const note = project.notes.find(n => n.title === title);
+                const note = project.notes.find(n => n.id === newID);
                 if (note) {
+                    console.log(note);
                     note.title = titleInp.value;
                     const unformatDate = dateInp.value.split('-').reverse().join('/');
-                    const formatDate = dateInp.value ? unformatDate : format(new Date(), "dd/MM/yyyy");
+                    const formatDate = dateInp.value ? unformatDate : note.date;
                     note.date = formatDate;
                     note.description = descriptionInp.value;
                     note.priority = priorityInp.value;
