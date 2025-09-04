@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+<script defer src="main.js"></script></head>
+<body>
+    <main>
+        <nav>
+            <ul>
+                <li class="nav-tile selected" id="home"><a>Home</a></li>
+                <li class="nav-tile" id="today"><a>Today</a></li>
+                <li class="nav-tile" id="upcoming"><a>Upcoming</a></li>
+                <li class="nav-tile" id="past"><a>Past</a></li>
+            </ul>
+        </nav>
+        
+        <div id="display"></div>
+        
+        <div class="create-window" id="create-note">
+            <div class="popup">
+                <h2>Create Note</h2>
+
+                <label for="create-title">Note Title:</label>
+                <input type="text" id="create-title" maxlength="20" autocomplete="off">
+
+                <label for="create-description">Note Description:</label>
+                <input type="text" id="create-description" maxlength="60" autocomplete="off">
+
+                <label for="create-date">Due Date:</label>
+                <input type="date" id="create-date" autocomplete="off">
+
+                <label for ="create-priority">Set Priority:</label>
+                <select id="create-priority">
+                    <option value="Low" selected>Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+                <button type="submit" class="button" id="note-submit">Submit</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
+            </div>
+        </div>
+
+        <div class="create-window" id="create-project">
+            <div class="popup">
+                <h2>Create Project</h2>
+
+                <label for="create-name">Project Name</label>
+                <input type="text" id="create-name" maxlength="15" autocomplete="off">
+
+                <button type="submit" class="button" id="project-submit">Submit</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
+            </div>
+        </div>
+
+        <div class="create-window" id="show-note">
+            <div class="popup">
+                <h1 id="display-h1"></h1>
+                <h3 id="display-h3"></h3>
+                <p id="display-p"></p>
+                <p id="note-id"></p>
+
+                <button class="edit-button new-style" id="note-edit">Edit Note</button>
+                <button class="delete-button new-style" id="note-delete">Delete Note</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
+            </div>
+        </div>
+
+        <div class="create-window" id="edit-note">
+            <div class="popup">
+                <h2>Edit Note</h2>
+
+                <label for="edit-title">Note Title:</label>
+                <input type="text" id="edit-title" maxlength="20" autocomplete="off">
+
+                <label for="edit-description">Note Description:</label>
+                <input type="text" id="edit-description" maxlength="60" autocomplete="off">
+
+                <label for="edit-date">Due Date:</label>
+                <input type="date" id="edit-date" autocomplete="off">
+
+                <label for ="edit-priority">Set Priority:</label>
+                <select id="edit-priority">
+                    <option value="Low" selected>Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+
+                <button type="submit" class="button" id="edit-submit">Submit</button>
+                <button type="reset" class="button close" id="project-close">Close</button>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
